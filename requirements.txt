@@ -1,0 +1,12 @@
+pandas
+flask[async]
+datasets
+transformers
+gunicorn
+gevent
+requests
+scikit-learn==1.4.1.post1
+scipy
+numpy
+torch
+sentence-transformers
