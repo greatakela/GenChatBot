@@ -116,14 +116,12 @@
 ```bash
 │   README.md - отчет по ДЗ 2
 │   requirements.txt
-│   Dockerfile
-│   .dockerignore
 │   .gitignore
-|   __init__.py
+│   __init__.py
 │   generative_bot.py - основной файл алгоритма
-│   utilшешуs.py - вспомогательные функции
-|   app.py - для запуска UI c flask
-|
+│   utilities.py - вспомогательные функции
+│   app.py - для запуска UI c flask
+│
 ├───Notebooks - ноутбуки с обучением и оценкой модели
 ├───templates - оформление веб-интерфейса
 │       chat.html
@@ -131,7 +129,7 @@
 │       style.css
 ├───data
 │       spock_lines_context.pkl - дополненные данные для обучения модели
-│       spock_lines_vectorized.pkl - векторная база данных контекст+вопрос
+│       spock_lines_vectorized.pkl - векторная база данных контекст-вопрос
 │       spock_lines.pkl - исходные данные
 ```
 
