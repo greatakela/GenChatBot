@@ -36,7 +36,7 @@
 
 Таким образом, получается около 38 тыс. семплов для обучения. Обработанные и дополненные таким образом данные сохранены в файл ```spock_lines_context.pkl```.
 
-Код подготовки данных в ноутбуке [здесь](https://github.com/greatakela/GenChatBot/blob/main/Notebooks/GNLP_HW2-data_prep.ipynb)
+Код подготовки данных в ноутбуке [здесь](https://github.com/greatakela/GenChatBot/blob/main/Notebooks/GNLP_HW2_data_prep.ipynb)
 
 ## Архитектура чат бота
 
