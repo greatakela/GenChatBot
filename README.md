@@ -73,7 +73,7 @@
 
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_r.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_p.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_f1.png" width="32.5%">
 
-<img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png" width="32%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png" width="32%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png" width="32%">
+<img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png" width="32.5%">
 
 Графики функции потерь:
 
