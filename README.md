@@ -107,6 +107,7 @@ Variables:
 Cosine similarity and generation time plots:
 ![gen time](https://github.com/greatakela/GenChatBot/blob/main/static/gen_time.png)
 ![cos sim](https://github.com/greatakela/GenChatBot/blob/main/static/cos_sim.png)
+<img src="https://github.com/greatakela/GenChatBot/blob/main/static/gen_time.png" width="49.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/cos_sim.png" width="49.5%">
 
 **Best results**: `temperature=0.9`, `top_p=0.9` for style diversity with acceptable factual consistency
 
