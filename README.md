@@ -70,20 +70,15 @@ Metrics logged during training:
 **Graphs:**
 
 ROUGE:
-![ROUGE 1](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png)
-![ROUGE 2](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png)
-![ROUGE L](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png)
+
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png" width="32.5%">
 
 BERTScore:
-![Recall](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_r.png)
-![Precision](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_p.png)
-![F1](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_f1.png)
+
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_r.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_p.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_f1.png" width="32.5%">
 
 Loss:
-![Train Loss](https://github.com/greatakela/GenChatBot/blob/main/static/train_loss.png)
-![Eval Loss](https://github.com/greatakela/GenChatBot/blob/main/static/eval_loss.png)
+
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/train_loss.png" width="49.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_loss.png" width="49.5%">
 
 ### Training Summary
@@ -105,8 +100,7 @@ Variables:
 - `temperature`, `top_p`
 
 Cosine similarity and generation time plots:
-![gen time](https://github.com/greatakela/GenChatBot/blob/main/static/gen_time.png)
-![cos sim](https://github.com/greatakela/GenChatBot/blob/main/static/cos_sim.png)
+
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/gen_time.png" width="49.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/cos_sim.png" width="49.5%">
 
 **Best results**: `temperature=0.9`, `top_p=0.9` for style diversity with acceptable factual consistency
