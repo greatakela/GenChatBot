@@ -57,15 +57,23 @@ Input:
 ```text
 "context: " + context + "</s>question: " + question  
 ```
-### Evaluation
+### Training Evaluation
 
-Metrics logged during training:
-- Train/Eval Loss
-- Automatic metrics for generated text similarity with target using Hugging Face’s `evaluate`:
-  - **ROUGE-1, ROUGE-2, ROUGE-L**  
-  - **BERTScore (Recall, Precision, F1)**
+During training, standard metrics such as train and evaluation loss were logged. In addition, I implemented automatic metrics to measure the similarity between the generated responses and the target responses from the original script. 
 
-> ROUGE measures n-gram and LCS overlap; BERTScore measures embedding similarity
+While automatic metrics are often criticized and generally not sufficient for evaluating generative models on their own, I used them as directional indicators to assess whether continued training was necessary. These metrics should, of course, be complemented with human-based evaluations—especially when fine-tuning generation strategies.
+
+For automatic evaluation, I used the `evaluate` library from Hugging Face, specifically the [**ROUGE**](https://huggingface.co/spaces/evaluate-metric/rouge) and [**BERTScore**](https://huggingface.co/spaces/evaluate-metric/bertscore) metric packages:
+
+- **ROUGE-1** – unigram overlap between the generated text and the target (higher means more similar)
+- **ROUGE-2** – bigram overlap (higher means more similar)
+- **ROUGE-L** – longest common subsequence match (higher means better structural similarity)
+- **ROUGE average generated length** – average length of the generated responses (useful to understand how verbose the model is)
+- **BERTScore Recall** – cosine similarity between target and generated embeddings (closer to 1 indicates stronger recall)
+- **BERTScore Precision** – cosine similarity between generated and target embeddings (closer to 1 indicates stronger precision)
+- **BERTScore F1** – harmonic mean of BERTScore precision and recall (closer to 1 indicates higher overall similarity)
+
+Below are screenshots from Weights & Biases showing how these metrics evolved during training:
 
 **Graphs:**
 
@@ -81,23 +89,45 @@ Loss:
 
 <img src="https://github.com/greatakela/GenChatBot/blob/main/static/train_loss.png" width="49.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_loss.png" width="49.5%">
 
-### Training Summary
+### Model Training Summary
 
-The model showed good training/validation loss reduction. Eval and train loss continued dropping across epochs, suggesting further fine-tuning is possible. Training was stopped at 5 epochs when metrics stabilized.
+The results indicate that the model performed very well during both training and validation.  
+Loss values for both the training and validation datasets decreased steadily with each epoch, suggesting that the model was effectively learning and adapting to the task.
+
+The consistent reduction in loss reflects improved predictive performance. A significant drop in training loss indicates successful learning and pattern recognition from the training data, while the decreasing validation loss confirms that the model is generalizing well without overfitting.
+
+The narrowing gap between training and validation loss over time is also a positive sign. That said, it’s important to monitor this difference carefully—if the gap becomes too small, it could indicate underfitting; if too large, potential overfitting.
+
+In conclusion, the decreasing and converging training and validation losses are strong indicators of the model's ability to generalize and respond effectively to unseen data, which is critical for text generation tasks.
+
+Training graphs show there's still room for fine-tuning, as both eval and train losses continued to decline.  
+Despite this potential, training was stopped after 5 epochs, as text similarity metrics began to stabilize—though they continued to show gradual improvement.
 
 ### Generation Strategy Tuning
 
-Experiments run using [this notebook](https://github.com/greatakela/GenChatBot/blob/main/Notebooks/GNLP_HW2_generation_evaluation.ipynb)
+To determine optimal generation parameters for the chatbot, I ran several experiments while adjusting key generation settings.  
+You can view the experiment notebook [here](https://github.com/greatakela/GenChatBot/blob/main/Notebooks/GNLP_HW2_generation_evaluation.ipynb).
 
-Fixed parameters:
-- `do_sample=True`
-- `max_length=1000`
-- `repetition_penalty=2.0`
-- `top_k=50`
-- `no_repeat_ngram_size=2`
+After testing, I chose the following as fixed parameters:
+- `do_sample=True` – adds randomness to generation
+- `max_length=1000` – no hard limit on output length
+- `repetition_penalty=2.0` – mitigates repetition due to slight undertraining
+- `top_k=50` – values lower than this reduce the model’s responsiveness to user input
+- `no_repeat_ngram_size=2` – further helps control repetition
 
-Variables:
-- `temperature`, `top_p`
+I experimented with `top_p` and `temperature` to evaluate their effect on creativity and text variation.  
+Evaluation was based on cosine similarity between generated responses and target script replies, using a random sample of 100 items from `spock_lines_context.pkl`.  
+Similarity was measured using the same bi-encoder model used in the retrieval component of the chatbot.  
+I also tracked response generation time.
+
+The tested parameter combinations were:
+
+- **temperature = 0.2, top_p = 0.1** – expected safe, generic outputs, possibly lacking character personality  
+- **temperature = 0.5, top_p = 0.5** – standard responses with slightly more expressive variability  
+- **temperature = 0.7, top_p = 0.8** – more creativity, with emerging character traits  
+- **temperature = 0.9, top_p = 0.9** – stronger creativity, clear expression of character style  
+- **temperature = 1.0, top_p = 0.95** – highest creativity, but with increased risk of drifting off-topic
+
 
 Cosine similarity and generation time plots:
 
@@ -139,9 +169,17 @@ python app.py
 ```
 Accessible at: `http://127.0.0.1:5000`
 
-### Flask App Async Handling
+### Asynchronous Handling in the Flask Application
 
-Async endpoints are handled using `async def` and `await`, e.g.:
+Flask supports asynchronous behavior by allowing the use of asynchronous route handlers, enabling event-driven concurrency through `async` and `await`.  
+When a request hits an asynchronous route, Flask runs its processing loop with each event handled in a separate thread or coroutine.
+
+In my implementation, the Flask app handles only two types of events:
+- Rendering the interface
+- Receiving a user request and generating a response (this part cannot be asynchronous, as a response requires the user's input first)
+
+To demonstrate asynchronous capabilities in the app’s codebase, I added a small auxiliary coroutine that runs in parallel with response generation—a simple sleep operation:
+
 
 ```python
 async def sleep():
