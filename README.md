@@ -73,15 +73,18 @@ ROUGE:
 ![ROUGE 1](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png)
 ![ROUGE 2](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png)
 ![ROUGE L](https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png)
+<img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_1.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_2.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_rouge_l.png" width="32.5%">
 
 BERTScore:
 ![Recall](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_r.png)
 ![Precision](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_p.png)
 ![F1](https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_f1.png)
+<img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_r.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_p.png" width="32.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_bs_f1.png" width="32.5%">
 
 Loss:
 ![Train Loss](https://github.com/greatakela/GenChatBot/blob/main/static/train_loss.png)
 ![Eval Loss](https://github.com/greatakela/GenChatBot/blob/main/static/eval_loss.png)
+<img src="https://github.com/greatakela/GenChatBot/blob/main/static/train_loss.png" width="49.5%"> <img src="https://github.com/greatakela/GenChatBot/blob/main/static/eval_loss.png" width="49.5%">
 
 ### Training Summary
 
